@@ -1,8 +1,12 @@
 import numpy as np
 from matplotlib import pyplot as plt
 import elements as ele
-sizex = 200
-sizey = 200
+import time
+
+print("calculating")
+start = time.time()
+sizex = 400
+sizey = 400
 D1x,D1y = 25,25
 V1x,V1y = 25,25
 
@@ -32,12 +36,13 @@ speed[speed == 0] = 1e-9  # prevent division by zero
 speed[speed >40] = 40
 
 cp = 1-(speed/Vinf)**2
+print(f"calculations done in {time.time() -start} seconds, drawing in progress")
 
 fig, ax = plt.subplots(figsize=(12,12))
 ax.quiver(xx, yy, U, V)
 
 fig, ax = plt.subplots(figsize=(12,12))
-ax.streamplot(xx, yy, U, V ,density =6)
+ax.streamplot(xx, yy, U, V ,density =2.5,broken_streamlines=False)
 ax.scatter(D1x,D1y,color='green',s=80)
 
 fig, ax = plt.subplots(figsize=(12,12))
